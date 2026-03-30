@@ -1,65 +1,121 @@
-import Image from "next/image";
+import { readdir } from "node:fs/promises";
+import path from "node:path";
+import HeroSlider from "./components/HeroSlider";
+import ProductGrid from "./components/ProductGrid";
+import PromoBar from "./components/PromoBar";
+import LocationSection from "./components/LocationSection";
 
-export default function Home() {
+const imageExtensions = new Set([".jpg", ".jpeg", ".png", ".webp", ".gif"]);
+
+const productNameMap: Record<string, string> = {
+  accent: "All New Accent",
+  creta: "Creta",
+  custin: "Custin",
+  elentra: "Elantra",
+  "i10-hatchback": "Grand i10 Hatchback",
+  i10: "Grand i10 Sedan",
+  ioniq5: "IONIQ 5",
+  palisade: "Palisade",
+  santafe: "Santa Fe",
+  stargazer: "Stargazer X",
+  tucson: "Tucson",
+  venue: "Venue",
+};
+
+const productPriceMap: Record<string, string> = {
+  accent: "Giá: từ 455 triệu",
+  creta: "Giá: từ 599 triệu",
+  custin: "Giá: từ 1,19 tỷ",
+  elentra: "Giá: từ 769 triệu",
+  "i10-hatchback": "Giá: từ 360 triệu",
+  i10: "Giá: từ 380 triệu",
+  ioniq5: "Giá: từ 1,3 tỷ",
+  palisade: "Giá: từ 1,589 tỷ",
+  santafe: "Giá: từ 1,056 tỷ",
+  stargazer: "Giá: từ 620 triệu",
+  tucson: "Giá: từ 825 triệu",
+  venue: "Giá: từ 499 triệu",
+};
+
+async function getSlideImages() {
+  const slidesDir = path.join(process.cwd(), "public", "slides");
+
+  try {
+    const files = await readdir(slidesDir, { withFileTypes: true });
+
+    return files
+      .filter((entry) => entry.isFile())
+      .map((entry) => entry.name)
+      .filter((fileName) => imageExtensions.has(path.extname(fileName).toLowerCase()))
+      .sort((a, b) => a.localeCompare(b))
+      .map((fileName) => `/slides/${encodeURIComponent(fileName)}`);
+  } catch {
+    return [];
+  }
+}
+
+function toTitleCase(value: string) {
+  return value
+    .split(/[\s-]+/)
+    .filter(Boolean)
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(" ");
+}
+
+async function getProducts() {
+  const productsDir = path.join(process.cwd(), "public", "product");
+
+  try {
+    const files = await readdir(productsDir, { withFileTypes: true });
+
+    return files
+      .filter((entry) => entry.isFile())
+      .map((entry) => entry.name)
+      .filter((fileName) => imageExtensions.has(path.extname(fileName).toLowerCase()))
+      .sort((a, b) => a.localeCompare(b))
+      .map((fileName) => {
+        const slug = path.basename(fileName, path.extname(fileName)).toLowerCase();
+
+        return {
+          image: `/product/${encodeURIComponent(fileName)}`,
+          name: productNameMap[slug] ?? toTitleCase(slug),
+          price: productPriceMap[slug] ?? "Giá: Liên hệ",
+        };
+      });
+  } catch {
+    return [];
+  }
+}
+
+async function getPictures() {
+  const picturesDir = path.join(process.cwd(), "public", "picture");
+
+  try {
+    const files = await readdir(picturesDir, { withFileTypes: true });
+
+    return files
+      .filter((entry) => entry.isFile())
+      .map((entry) => entry.name)
+      .filter((fileName) => imageExtensions.has(path.extname(fileName).toLowerCase()))
+      .sort((a, b) => a.localeCompare(b))
+      .map((fileName) => `/picture/${encodeURIComponent(fileName)}`);
+  } catch {
+    return [];
+  }
+}
+
+export default async function Home() {
+  const images = await getSlideImages();
+  const products = await getProducts();
+  const pictures = await getPictures();
+  const address = "278 Lê Duẩn, An Phú, Pleiku, Gia Lai 600000, Việt Nam";
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <section className="pb-8">
+      <HeroSlider images={images} />
+      <PromoBar />
+      <ProductGrid products={products} />
+      <LocationSection address={address} images={pictures} />
+    </section>
   );
 }
