@@ -38,8 +38,13 @@ export default function RootLayout({
         className={`${quicksand.className} bg-white text-zinc-900 antialiased`}
       >
         <header className="relative border-b border-zinc-200 bg-zinc-100">
-          <div className="mx-auto flex h-[52px] w-full max-w-[1280px] items-center justify-between px-4 sm:h-[56px] sm:px-6">
-            <Link href="/" className="flex items-center" aria-label="Về trang chủ">
+          <div className="mx-auto flex h-[64px] w-full max-w-[1280px] items-center justify-between px-4 sm:h-[72px] sm:px-6">
+            {" "}
+            <Link
+              href="/"
+              className="flex items-center"
+              aria-label="Về trang chủ"
+            >
               <Image
                 src="/logo/huyndai_logo.png"
                 alt="Hyundai TC Motor"
@@ -50,7 +55,6 @@ export default function RootLayout({
                 priority
               />
             </Link>
-
             <nav aria-label="Main navigation" className="hidden lg:block">
               <ul className="flex items-center gap-5 text-[13px] font-medium text-zinc-700">
                 {navItems.map((item) => (
@@ -65,11 +69,9 @@ export default function RootLayout({
                 ))}
               </ul>
             </nav>
-
             <div className="hidden text-base font-semibold text-blue-900 xl:block">
               Hyundai Gia Lai
             </div>
-
             <MobileNav items={navItems} />
           </div>
         </header>
