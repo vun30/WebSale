@@ -101,7 +101,7 @@ export default async function Page({
     activeType === "all" ? products : products.filter((p) => p.type === activeType);
 
   return (
-    <section className="mx-auto w-full max-w-[1280px] px-6 py-10">
+    <section className="mx-auto w-full max-w-[1280px] px-4 py-8 sm:px-6 sm:py-10">
       <div className="text-sm text-zinc-500">
         <Link href="/" className="hover:text-zinc-700">
           Trang chủ
@@ -110,15 +110,17 @@ export default async function Page({
         <span className="font-medium text-zinc-700">Sản phẩm</span>
       </div>
 
-      <div className="mt-10 text-center">
-        <h1 className="text-5xl font-extrabold tracking-tight text-zinc-800">Sản phẩm</h1>
+      <div className="mt-8 text-center sm:mt-10">
+        <h1 className="text-3xl font-extrabold tracking-tight text-zinc-800 sm:text-4xl lg:text-5xl">
+          Sản phẩm
+        </h1>
         <p className="mt-3 text-sm text-zinc-500">
           Khám phá các dòng xe Hyundai mới nhất tại Việt Nam
         </p>
       </div>
 
-      <div className="mt-10 border-b border-zinc-200">
-        <div className="mx-auto flex max-w-[920px] items-center justify-between">
+      <div className="mt-8 border-b border-zinc-200 sm:mt-10">
+        <div className="mx-auto flex max-w-[920px] items-center gap-2 overflow-x-auto pb-2">
           {tabs.map((tab) => {
             const isActive = tab.type === activeType;
             const href = tab.type === "all" ? "/san-pham" : `/san-pham?type=${tab.type}`;
@@ -127,7 +129,7 @@ export default async function Page({
               <Link
                 key={tab.type}
                 href={href}
-                className={`flex-1 px-2 py-3 text-center text-sm font-semibold transition ${
+                className={`min-w-[110px] rounded-t-md px-3 py-3 text-center text-sm font-semibold transition sm:flex-1 sm:rounded-none sm:px-2 ${
                   isActive
                     ? "bg-black text-white"
                     : "text-zinc-600 hover:bg-zinc-100"
@@ -140,21 +142,26 @@ export default async function Page({
         </div>
       </div>
 
-      <div className="mt-10 grid grid-cols-1 gap-x-10 gap-y-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <div className="mt-8 grid grid-cols-1 gap-x-8 gap-y-10 sm:mt-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {filtered.map((product) => (
           <article key={product.slug} className="text-center">
-            <div className="relative mx-auto h-[170px] w-full max-w-[260px]">
-              <Image
-                src={product.image}
-                alt={product.name}
-                fill
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                className="object-contain"
-              />
-            </div>
-            <div className="mt-4 text-sm font-semibold text-zinc-700">
-              {product.name}
-            </div>
+            <Link
+              href={`/san-pham/${product.slug}`}
+              className="block rounded-xl p-2 transition hover:bg-zinc-50"
+            >
+              <div className="relative mx-auto h-[150px] w-full max-w-[240px] sm:h-[170px] sm:max-w-[260px]">
+                <Image
+                  src={product.image}
+                  alt={product.name}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  className="object-contain"
+                />
+              </div>
+              <div className="mt-4 text-sm font-semibold text-zinc-700">
+                {product.name}
+              </div>
+            </Link>
           </article>
         ))}
       </div>

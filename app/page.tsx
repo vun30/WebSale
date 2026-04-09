@@ -77,6 +77,7 @@ async function getProducts() {
         const slug = path.basename(fileName, path.extname(fileName)).toLowerCase();
 
         return {
+          slug,
           image: `/product/${encodeURIComponent(fileName)}`,
           name: productNameMap[slug] ?? toTitleCase(slug),
           price: productPriceMap[slug] ?? "Giá: Liên hệ",

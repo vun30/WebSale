@@ -39,7 +39,7 @@ export default function HeroSlider({ images, intervalMs = 4000 }: HeroSliderProp
   if (!hasImages || !activeImage) {
     return (
       <section className="w-full">
-        <div className="flex h-[420px] items-center justify-center bg-zinc-100 text-zinc-500">
+        <div className="flex h-[240px] items-center justify-center bg-zinc-100 px-4 text-center text-zinc-500 sm:h-[320px] lg:h-[420px]">
           Chua co anh trong thu muc public/slides
         </div>
       </section>
@@ -49,7 +49,7 @@ export default function HeroSlider({ images, intervalMs = 4000 }: HeroSliderProp
   return (
     <section className="w-full">
       <div className="relative overflow-hidden bg-zinc-100">
-        <div className="relative h-[420px] w-full">
+        <div className="relative h-[240px] w-full sm:h-[320px] lg:h-[420px]">
           <div
             className="flex h-full transition-transform duration-700 ease-in-out"
             style={{ transform: `translateX(-${safeIndex * 100}%)` }}
@@ -75,7 +75,7 @@ export default function HeroSlider({ images, intervalMs = 4000 }: HeroSliderProp
               type="button"
               onClick={goPrev}
               aria-label="Slide truoc"
-              className="absolute left-4 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-2xl font-bold text-zinc-700 shadow transition hover:bg-white"
+              className="absolute left-2 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-xl font-bold text-zinc-700 shadow transition hover:bg-white sm:left-4 sm:h-11 sm:w-11 sm:text-2xl"
             >
               ‹
             </button>
@@ -84,12 +84,12 @@ export default function HeroSlider({ images, intervalMs = 4000 }: HeroSliderProp
               type="button"
               onClick={goNext}
               aria-label="Slide tiep theo"
-              className="absolute right-4 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-2xl font-bold text-zinc-700 shadow transition hover:bg-white"
+              className="absolute right-2 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-xl font-bold text-zinc-700 shadow transition hover:bg-white sm:right-4 sm:h-11 sm:w-11 sm:text-2xl"
             >
               ›
             </button>
 
-            <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 items-center gap-2">
+            <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 items-center gap-2 sm:bottom-4">
               {images.map((_, dotIdx) => (
                 <button
                   key={`dot-${dotIdx}`}

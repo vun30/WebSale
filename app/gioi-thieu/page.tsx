@@ -9,7 +9,7 @@ export const metadata = {
 export default function Page() {
   return (
     <section className="w-full">
-      <div className="mx-auto w-full max-w-[1280px] px-6 py-10">
+      <div className="mx-auto w-full max-w-[1280px] px-4 py-8 sm:px-6 sm:py-10">
         <div className="text-sm text-zinc-500">
           <Link href="/" className="hover:text-zinc-700">
             Trang chủ
@@ -18,12 +18,12 @@ export default function Page() {
           <span className="font-medium text-zinc-700">Giới thiệu</span>
         </div>
 
-        <div className="mt-8 grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
+        <div className="mt-8 grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-10">
           <div>
             <div className="inline-flex rounded-full bg-blue-50 px-3 py-1 text-xs font-bold uppercase tracking-wide text-blue-700">
               About us
             </div>
-            <h1 className="mt-4 text-5xl font-extrabold leading-tight text-slate-900">
+            <h1 className="mt-4 text-3xl font-extrabold leading-tight text-slate-900 sm:text-4xl lg:text-5xl">
               Giới thiệu Hyundai Gia Lai
             </h1>
             <p className="mt-4 max-w-xl text-base leading-relaxed text-zinc-600">
@@ -84,7 +84,7 @@ export default function Page() {
               className="h-auto w-full bg-white object-contain"
               priority
             />
-            <div className="flex items-center justify-between gap-4 border-t border-zinc-200 px-4 py-3 text-sm text-zinc-600">
+            <div className="flex flex-col items-start justify-between gap-3 border-t border-zinc-200 px-4 py-3 text-sm text-zinc-600 sm:flex-row sm:items-center sm:gap-4">
               <div className="flex items-center gap-2">
                 <span className="text-amber-600">★</span>
                 <span className="font-semibold text-zinc-800">4.8/5</span>
@@ -100,7 +100,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-4">
+        <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-4">
           {[
             { value: "10+", label: "Mẫu xe trưng bày" },
             { value: "3.000+", label: "Khách hàng phục vụ / năm" },
@@ -123,7 +123,7 @@ export default function Page() {
       </div>
 
       <div className="w-full bg-slate-50">
-        <div className="mx-auto w-full max-w-[1280px] px-6 py-12">
+        <div className="mx-auto w-full max-w-[1280px] px-4 py-10 sm:px-6 sm:py-12">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
             <div>
               <h2 className="text-3xl font-extrabold text-slate-900">
