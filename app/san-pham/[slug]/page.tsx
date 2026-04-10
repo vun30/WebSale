@@ -4,6 +4,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { products } from "@/app/data/productData";
 
+const BASE_URL = "https://www.hyundaigialaiofficial.com.vn";
+
 const productBannerMap: Record<string, string> = {
   accent: "/product-banner/accent-hero.jpg",
   creta: "/product-banner/creta-hero.jpg",
@@ -194,9 +196,31 @@ export async function generateMetadata({
   const { slug } = await params;
   const detailData = getDetailData(slug);
   const name = detailData?.product?.name ?? slug;
+  const description = `Chi tiết mẫu xe ${name} tại Hyundai Gia Lai`;
+  const image =
+    productBannerMap[slug] ??
+    detailData?.sections.find((section) => section.key === "highlights")?.images[0] ??
+    detailData?.sections[0]?.images[0];
+
   return {
-    title: `${name} | Hyundai Gia Lai`,
-    description: `Chi tiết mẫu xe ${name} tại Hyundai Gia Lai`,
+    title: name,
+    description,
+    alternates: {
+      canonical: `/san-pham/${slug}`,
+    },
+    openGraph: {
+      type: "website",
+      title: `${name} | Hyundai Gia Lai`,
+      description,
+      url: `/san-pham/${slug}`,
+      images: image ? [`${BASE_URL}${image}`] : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${name} | Hyundai Gia Lai`,
+      description,
+      images: image ? [`${BASE_URL}${image}`] : undefined,
+    },
   };
 }
 
@@ -235,9 +259,35 @@ export default async function CarDetailPage({
     price?: string;
   }>;
   const specs = (detailData.product.specs ?? {}) as Record<string, string>;
+  const price =
+    variants.find((variant) => variant.price)?.price ?? detailData.product.price;
+  const productJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: carName,
+    description: activeSection?.summary || `Thông tin chi tiết ${carName}`,
+    image: bannerImage ? [`${BASE_URL}${bannerImage}`] : undefined,
+    brand: {
+      "@type": "Brand",
+      name: "Hyundai",
+    },
+    offers: price
+      ? {
+          "@type": "Offer",
+          priceCurrency: "VND",
+          price: String(price).replace(/[^\d]/g, "") || undefined,
+          availability: "https://schema.org/InStock",
+          url: `${BASE_URL}/san-pham/${slug}`,
+        }
+      : undefined,
+  };
 
   return (
     <section className="w-full bg-zinc-100 pb-10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+      />
       <div className="mx-auto w-full max-w-[1280px] px-4 py-4 sm:px-6 sm:py-5">
         <div className="text-sm text-zinc-500">
           <Link href="/" className="hover:text-zinc-700">

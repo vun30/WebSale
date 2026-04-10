@@ -1,11 +1,27 @@
 import { readdir } from "node:fs/promises";
 import path from "node:path";
+import type { Metadata } from "next";
 import HeroSlider from "./components/HeroSlider";
 import ProductGrid from "./components/ProductGrid";
 import PromoBar from "./components/PromoBar";
 import LocationSection from "./components/LocationSection";
 import HomeNewsSection from "./components/HomeNewsSection";
 import HomeServiceSection from "./components/HomeServiceSection";
+
+export const metadata: Metadata = {
+  title: "Trang chủ",
+  description:
+    "Hyundai Gia Lai - cập nhật giá xe Hyundai mới nhất, chương trình ưu đãi, đăng ký lái thử và dịch vụ hậu mãi chính hãng.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Hyundai Gia Lai | Đại lý Hyundai chính hãng tại Gia Lai",
+    description:
+      "Khám phá các dòng xe Hyundai, ưu đãi mới nhất và đăng ký lái thử tại Hyundai Gia Lai.",
+    url: "/",
+  },
+};
 
 const imageExtensions = new Set([".jpg", ".jpeg", ".png", ".webp", ".gif"]);
 

@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { stat } from "node:fs/promises";
 
 import newsHyundai from "./data/newsHyundai";
 import { products } from "./data/productData";
@@ -14,43 +15,67 @@ function getProductSlugs() {
   return Object.keys(products).map((key) => dataKeyToSlug[key] ?? key);
 }
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
+async function getLastModifiedFromAbsolute(absolutePath: string) {
+  try {
+    const fileStat = await stat(absolutePath);
+    return fileStat.mtime;
+  } catch {
+    return new Date();
+  }
+}
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const root = process.cwd();
+  const [
+    homeLastModified,
+    aboutLastModified,
+    productsLastModified,
+    newsLastModified,
+    contactLastModified,
+    testDriveLastModified,
+  ] = await Promise.all([
+    getLastModifiedFromAbsolute(`${root}/app/page.tsx`),
+    getLastModifiedFromAbsolute(`${root}/app/gioi-thieu/page.tsx`),
+    getLastModifiedFromAbsolute(`${root}/app/data/productData.js`),
+    getLastModifiedFromAbsolute(`${root}/app/data/newsHyundai.js`),
+    getLastModifiedFromAbsolute(`${root}/app/lien-he/page.tsx`),
+    getLastModifiedFromAbsolute(`${root}/app/dang-ky-lai-thu/page.tsx`),
+  ]);
 
   const staticPages: MetadataRoute.Sitemap = [
     {
       url: `${BASE_URL}/`,
-      lastModified: now,
+      lastModified: homeLastModified,
       changeFrequency: "daily",
       priority: 1,
     },
     {
       url: `${BASE_URL}/gioi-thieu`,
-      lastModified: now,
+      lastModified: aboutLastModified,
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
       url: `${BASE_URL}/san-pham`,
-      lastModified: now,
+      lastModified: productsLastModified,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
       url: `${BASE_URL}/tin-tuc`,
-      lastModified: now,
+      lastModified: newsLastModified,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
       url: `${BASE_URL}/dang-ky-lai-thu`,
-      lastModified: now,
+      lastModified: testDriveLastModified,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${BASE_URL}/lien-he`,
-      lastModified: now,
+      lastModified: contactLastModified,
       changeFrequency: "monthly",
       priority: 0.8,
     },
@@ -58,7 +83,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const productPages: MetadataRoute.Sitemap = getProductSlugs().map((slug) => ({
     url: `${BASE_URL}/san-pham/${slug}`,
-    lastModified: now,
+    lastModified: productsLastModified,
     changeFrequency: "weekly",
     priority: 0.8,
   }));
@@ -66,7 +91,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const newsPages: MetadataRoute.Sitemap = (newsHyundai as Array<{ id: string }>).map(
     (news) => ({
       url: `${BASE_URL}/tin-tuc/${news.id}`,
-      lastModified: now,
+      lastModified: newsLastModified,
       changeFrequency: "monthly",
       priority: 0.7,
     }),

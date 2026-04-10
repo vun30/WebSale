@@ -1,5 +1,6 @@
 import { readdir } from "node:fs/promises";
 import path from "node:path";
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -33,6 +34,42 @@ function isHeading(line: string) {
   return false;
 }
 
+function toIsoDate(date: string) {
+  const [dd, mm, yyyy] = date.split("/").map(Number);
+  if (!dd || !mm || !yyyy) return new Date().toISOString();
+  return new Date(Date.UTC(yyyy, mm - 1, dd)).toISOString();
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+  const { id } = await params;
+  const item = (newsHyundai as any[]).find((n) => n.id === id);
+  if (!item) {
+    return {
+      title: "Tin tức",
+      description: "Bài viết tin tức Hyundai.",
+    };
+  }
+
+  return {
+    title: item.title,
+    description: item.excerpt ?? "Bài viết tin tức Hyundai.",
+    alternates: {
+      canonical: `/tin-tuc/${item.id}`,
+    },
+    openGraph: {
+      type: "article",
+      title: item.title,
+      description: item.excerpt ?? "Bài viết tin tức Hyundai.",
+      url: `/tin-tuc/${item.id}`,
+      publishedTime: toIsoDate(item.date),
+    },
+  };
+}
+
 export default async function Page({
   params,
 }: {
@@ -44,9 +81,33 @@ export default async function Page({
 
   const images = await getNewsImages(Number(item.newsNo));
   const hero = images[0] ?? null;
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: item.title,
+    description: item.excerpt ?? "",
+    datePublished: toIsoDate(item.date),
+    dateModified: toIsoDate(item.date),
+    author: {
+      "@type": "Organization",
+      name: item.source || "Hyundai Gia Lai",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Hyundai Gia Lai",
+    },
+    image: hero
+      ? [`https://www.hyundaigialaiofficial.com.vn${hero}`]
+      : undefined,
+    mainEntityOfPage: `https://www.hyundaigialaiofficial.com.vn/tin-tuc/${item.id}`,
+  };
 
   return (
     <section className="mx-auto w-full max-w-[900px] px-4 py-8 sm:px-6 sm:py-10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
       <div className="text-sm text-zinc-500">
         <Link href="/" className="hover:text-zinc-700">
           Trang chủ

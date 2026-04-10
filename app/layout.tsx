@@ -15,8 +15,35 @@ const quicksand = Quicksand({
 });
 
 export const metadata: Metadata = {
-  title: "Hyundai Gia Lai",
-  description: "Website Hyundai Gia Lai",
+  metadataBase: new URL("https://www.hyundaigialaiofficial.com.vn"),
+  title: {
+    default: "Hyundai Gia Lai | Đại lý Hyundai chính hãng tại Gia Lai",
+    template: "%s | Hyundai Gia Lai",
+  },
+  description:
+    "Hyundai Gia Lai - Đại lý Hyundai chính hãng. Cập nhật giá xe Hyundai mới nhất, đăng ký lái thử, khuyến mãi và dịch vụ hậu mãi chính hãng.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "vi_VN",
+    siteName: "Hyundai Gia Lai",
+    url: "/",
+    title: "Hyundai Gia Lai | Đại lý Hyundai chính hãng tại Gia Lai",
+    description:
+      "Khám phá các dòng xe Hyundai, đăng ký lái thử và nhận tư vấn tại Hyundai Gia Lai.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Hyundai Gia Lai | Đại lý Hyundai chính hãng tại Gia Lai",
+    description:
+      "Khám phá các dòng xe Hyundai, đăng ký lái thử và nhận tư vấn tại Hyundai Gia Lai.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 const navItems = [
@@ -49,6 +76,28 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <body
         className={`${quicksand.className} bg-white text-zinc-900 antialiased`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "AutoDealer",
+              name: "Hyundai Gia Lai",
+              url: "https://www.hyundaigialaiofficial.com.vn",
+              image:
+                "https://www.hyundaigialaiofficial.com.vn/logo/huyndai_logo.png",
+              telephone: "+84-981-543-342",
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: "278 Lê Duẩn, Phường An Phú",
+                addressLocality: "Pleiku",
+                addressRegion: "Gia Lai",
+                addressCountry: "VN",
+              },
+              sameAs: [],
+            }),
+          }}
+        />
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe

@@ -1,11 +1,27 @@
 import { readdir } from "node:fs/promises";
 import path from "node:path";
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
 import newsHyundai from "../data/newsHyundai";
 
 const imageExtensions = new Set([".jpg", ".jpeg", ".png", ".webp", ".gif"]);
+
+export const metadata: Metadata = {
+  title: "Tin tức",
+  description:
+    "Tin tức Hyundai mới nhất: công nghệ, sản phẩm, chiến lược và các hoạt động nổi bật của Hyundai Motor Group.",
+  alternates: {
+    canonical: "/tin-tuc",
+  },
+  openGraph: {
+    title: "Tin tức Hyundai | Hyundai Gia Lai",
+    description:
+      "Cập nhật tin tức Hyundai mới nhất về công nghệ, sản phẩm và xu hướng ngành ô tô.",
+    url: "/tin-tuc",
+  },
+};
 
 function parseDateDDMMYYYY(value: string): number {
   // "dd/mm/yyyy"

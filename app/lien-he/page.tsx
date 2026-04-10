@@ -1,8 +1,19 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 
-export const metadata = {
-  title: "Liên hệ | Hyundai Gia Lai",
-  description: "Thông tin liên hệ Hyundai Gia Lai",
+export const metadata: Metadata = {
+  title: "Liên hệ",
+  description:
+    "Thông tin liên hệ Hyundai Gia Lai: địa chỉ showroom, hotline, giờ làm việc và bản đồ chỉ đường.",
+  alternates: {
+    canonical: "/lien-he",
+  },
+  openGraph: {
+    title: "Liên hệ Hyundai Gia Lai",
+    description:
+      "Liên hệ Hyundai Gia Lai để nhận tư vấn mua xe, đặt lịch lái thử và hỗ trợ dịch vụ.",
+    url: "/lien-he",
+  },
 };
 
 export default function Page() {

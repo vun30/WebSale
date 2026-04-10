@@ -1,9 +1,20 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-export const metadata = {
-  title: "Giới thiệu | Hyundai Gia Lai",
-  description: "Giới thiệu về Hyundai Gia Lai",
+export const metadata: Metadata = {
+  title: "Giới thiệu",
+  description:
+    "Giới thiệu Hyundai Gia Lai - đại lý Hyundai chính hãng với dịch vụ bán hàng, hậu mãi và bảo dưỡng chuyên nghiệp.",
+  alternates: {
+    canonical: "/gioi-thieu",
+  },
+  openGraph: {
+    title: "Giới thiệu Hyundai Gia Lai",
+    description:
+      "Tìm hiểu về Hyundai Gia Lai, tầm nhìn, cam kết dịch vụ và hệ thống hậu mãi chính hãng.",
+    url: "/gioi-thieu",
+  },
 };
 
 export default function Page() {

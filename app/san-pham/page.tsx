@@ -1,5 +1,6 @@
 import { readdir } from "node:fs/promises";
 import path from "node:path";
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -47,6 +48,21 @@ const tabs: Array<{ label: string; type: ProductType }> = [
   { label: "MPV", type: "mpv" },
   { label: "Electric", type: "electric" },
 ];
+
+export const metadata: Metadata = {
+  title: "Sản phẩm",
+  description:
+    "Danh sách các dòng xe Hyundai tại Hyundai Gia Lai: Sedan, SUV, MPV, xe điện cùng thông tin chi tiết.",
+  alternates: {
+    canonical: "/san-pham",
+  },
+  openGraph: {
+    title: "Sản phẩm Hyundai | Hyundai Gia Lai",
+    description:
+      "Khám phá đầy đủ các dòng xe Hyundai tại Hyundai Gia Lai cùng thông tin chi tiết theo từng phân khúc.",
+    url: "/san-pham",
+  },
+};
 
 function toTitleCase(value: string) {
   return value
