@@ -22,7 +22,7 @@ const navItems = [
   { label: "Trang chủ", href: "/" },
   { label: "Giới thiệu", href: "/gioi-thieu" },
   { label: "Sản phẩm", href: "/san-pham" },
-  { label: "Tin tức", href: "#" },
+  { label: "Tin tức", href: "/tin-tuc" },
   { label: "Đăng ký lái thử", href: "/dang-ky-lai-thu" },
   { label: "Liên hệ", href: "/lien-he" },
 ] as const;
@@ -42,21 +42,21 @@ export default function RootLayout({
             {" "}
             <Link
               href="/"
-              className="flex items-center"
+              className="flex shrink-0 items-center"
               aria-label="Về trang chủ"
             >
               <Image
                 src="/logo/huyndai_logo.png"
                 alt="Hyundai TC Motor"
-                width={260}
-                height={48}
-                className="h-5 w-auto object-contain sm:h-6 lg:h-7"
-                style={{ width: "auto", height: "auto" }}
+                width={200}
+                height={36}
+                sizes="200px"
+                className="h-11 w-auto object-contain"
                 priority
               />
             </Link>
             <nav aria-label="Main navigation" className="hidden lg:block">
-              <ul className="flex items-center gap-5 text-[13px] font-medium text-zinc-700">
+              <ul className="flex items-center gap-5 text-[15px] font-medium text-zinc-700">
                 {navItems.map((item) => (
                   <li key={item.label}>
                     <Link
@@ -69,7 +69,7 @@ export default function RootLayout({
                 ))}
               </ul>
             </nav>
-            <div className="hidden text-base font-semibold text-blue-900 xl:block">
+            <div className="hidden text-xl font-extrabold text-blue-900 xl:block">
               Hyundai Gia Lai
             </div>
             <MobileNav items={navItems} />

@@ -4,6 +4,8 @@ import HeroSlider from "./components/HeroSlider";
 import ProductGrid from "./components/ProductGrid";
 import PromoBar from "./components/PromoBar";
 import LocationSection from "./components/LocationSection";
+import HomeNewsSection from "./components/HomeNewsSection";
+import HomeServiceSection from "./components/HomeServiceSection";
 
 const imageExtensions = new Set([".jpg", ".jpeg", ".png", ".webp", ".gif"]);
 
@@ -116,6 +118,8 @@ export default async function Home() {
       <HeroSlider images={images} />
       <PromoBar />
       <ProductGrid products={products} />
+      <HomeNewsSection />
+      <HomeServiceSection />
       <LocationSection address={address} images={pictures} />
     </section>
   );
