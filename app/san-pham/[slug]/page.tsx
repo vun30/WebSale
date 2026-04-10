@@ -68,7 +68,9 @@ function normalizeImagePath(src?: string | null) {
   return src;
 }
 
-function collectSectionImages(sectionData: Record<string, unknown> | undefined) {
+function collectSectionImages(
+  sectionData: Record<string, unknown> | undefined,
+) {
   if (!sectionData || typeof sectionData !== "object") return [];
 
   const images: Array<{ src: string; caption: string }> = [];
@@ -137,7 +139,9 @@ function mapDataKey(slug: string) {
 
 function getDetailData(slug: string) {
   const dataKey = mapDataKey(slug);
-  const product = (products as Record<string, ProductRecord | undefined>)[dataKey];
+  const product = (products as Record<string, ProductRecord | undefined>)[
+    dataKey
+  ];
   if (!product) return null;
 
   const sectionConfigs: Array<{ key: string; sourceKey: string }> = [
@@ -158,7 +162,9 @@ function getDetailData(slug: string) {
       const header = source.header as
         | { title?: string; body?: string }
         | undefined;
-      const intro = source.intro as { title?: string; body?: string } | undefined;
+      const intro = source.intro as
+        | { title?: string; body?: string }
+        | undefined;
       const images = collectSectionImages(source);
 
       if (images.length === 0 && !header?.body && !intro?.body) return null;
@@ -185,7 +191,9 @@ export async function generateStaticParams() {
     i10hatchback: "i10-hatchback",
     i10sedan: "i10",
   };
-  return Object.keys(products).map((key) => ({ slug: dataKeyToSlug[key] ?? key }));
+  return Object.keys(products).map((key) => ({
+    slug: dataKeyToSlug[key] ?? key,
+  }));
 }
 
 export async function generateMetadata({
@@ -199,7 +207,8 @@ export async function generateMetadata({
   const description = `Chi tiết mẫu xe ${name} tại Hyundai Gia Lai`;
   const image =
     productBannerMap[slug] ??
-    detailData?.sections.find((section) => section.key === "highlights")?.images[0] ??
+    detailData?.sections.find((section) => section.key === "highlights")
+      ?.images[0] ??
     detailData?.sections[0]?.images[0];
 
   return {
@@ -247,7 +256,9 @@ export default async function CarDetailPage({
     label: sectionMeta[section.key]?.label ?? section.label,
   }));
   const videoId = detailData.product.highlight?.videoId;
-  const youtubeUrl = videoId ? `https://www.youtube.com/watch?v=${videoId}` : null;
+  const youtubeUrl = videoId
+    ? `https://www.youtube.com/watch?v=${videoId}`
+    : null;
   const youtubeEmbedUrl = videoId
     ? `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1`
     : null;
@@ -260,7 +271,8 @@ export default async function CarDetailPage({
   }>;
   const specs = (detailData.product.specs ?? {}) as Record<string, string>;
   const price =
-    variants.find((variant) => variant.price)?.price ?? detailData.product.price;
+    variants.find((variant) => variant.price)?.price ??
+    detailData.product.price;
   const productJsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -352,11 +364,12 @@ export default async function CarDetailPage({
       </div>
 
       <div className="mx-auto w-full max-w-[1280px] px-4 sm:px-6">
-
         <div className="mt-6 space-y-6">
           {variants.length > 0 && (
             <article className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-zinc-200 sm:p-6">
-              <h2 className="text-2xl font-extrabold text-zinc-900">Phiên bản & giá</h2>
+              <h2 className="text-2xl font-extrabold text-zinc-900">
+                Phiên bản & giá
+              </h2>
               <div className="mt-4 space-y-2">
                 {variants.map((variant) => (
                   <div
@@ -392,8 +405,8 @@ export default async function CarDetailPage({
                     activeSection.key === "thongso"
                       ? "grid-cols-1"
                       : activeSection.images.length === 1
-                      ? "grid-cols-1"
-                      : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+                        ? "grid-cols-1"
+                        : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
                   }`}
                 >
                   {activeSection.images.map((imageItem) => (
@@ -441,30 +454,37 @@ export default async function CarDetailPage({
             </article>
           )}
 
-          {activeSection?.key === "thongso" && Object.keys(specs).length > 0 && (
-            <article
-              id="thong-so-ky-thuat"
-              className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-zinc-200 sm:p-6"
-            >
-              <h2 className="text-2xl font-extrabold text-zinc-900">Thông số kỹ thuật</h2>
-              <div className="mt-4 overflow-hidden rounded-lg border border-zinc-200">
-                {Object.entries(specs).map(([label, value]) => (
-                  <div
-                    key={label}
-                    className="grid grid-cols-1 border-b border-zinc-200 bg-white px-4 py-3 text-sm last:border-b-0 sm:grid-cols-2"
-                  >
-                    <span className="font-semibold text-zinc-700">{label}</span>
-                    <span className="text-zinc-600">{value}</span>
-                  </div>
-                ))}
-              </div>
-            </article>
-          )}
+          {activeSection?.key === "thongso" &&
+            Object.keys(specs).length > 0 && (
+              <article
+                id="thong-so-ky-thuat"
+                className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-zinc-200 sm:p-6"
+              >
+                <h2 className="text-2xl font-extrabold text-zinc-900">
+                  Thông số kỹ thuật
+                </h2>
+                <div className="mt-4 overflow-hidden rounded-lg border border-zinc-200">
+                  {Object.entries(specs).map(([label, value]) => (
+                    <div
+                      key={label}
+                      className="grid grid-cols-1 border-b border-zinc-200 bg-white px-4 py-3 text-sm last:border-b-0 sm:grid-cols-2"
+                    >
+                      <span className="font-semibold text-zinc-700">
+                        {label}
+                      </span>
+                      <span className="text-zinc-600">{value}</span>
+                    </div>
+                  ))}
+                </div>
+              </article>
+            )}
 
           {youtubeUrl && (
             <article className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-zinc-200 sm:p-6">
-              <h2 className="text-2xl font-extrabold text-zinc-900">Video giới thiệu</h2>
-            
+              <h2 className="text-2xl font-extrabold text-zinc-900">
+                Video giới thiệu
+              </h2>
+
               {youtubeEmbedUrl && (
                 <div className="mt-4 overflow-hidden rounded-xl bg-black">
                   <div className="relative aspect-video w-full">
@@ -480,7 +500,6 @@ export default async function CarDetailPage({
                   </div>
                 </div>
               )}
-              
             </article>
           )}
         </div>

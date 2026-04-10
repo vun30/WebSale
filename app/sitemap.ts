@@ -88,15 +88,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }));
 
-  const newsPages: MetadataRoute.Sitemap = (newsHyundai as Array<{ id: string }>).map(
-    (news) => ({
-      url: `${BASE_URL}/tin-tuc/${news.id}`,
-      lastModified: newsLastModified,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    }),
-  );
+  const newsPages: MetadataRoute.Sitemap = (
+    newsHyundai as Array<{ id: string }>
+  ).map((news) => ({
+    url: `${BASE_URL}/tin-tuc/${news.id}`,
+    lastModified: newsLastModified,
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
 
   return [...staticPages, ...productPages, ...newsPages];
 }
-

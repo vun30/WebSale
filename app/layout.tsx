@@ -33,12 +33,21 @@ export const metadata: Metadata = {
     title: "Hyundai Gia Lai | Đại lý Hyundai chính hãng tại Gia Lai",
     description:
       "Khám phá các dòng xe Hyundai, đăng ký lái thử và nhận tư vấn tại Hyundai Gia Lai.",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Hyundai Gia Lai",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Hyundai Gia Lai | Đại lý Hyundai chính hãng tại Gia Lai",
     description:
       "Khám phá các dòng xe Hyundai, đăng ký lái thử và nhận tư vấn tại Hyundai Gia Lai.",
+    images: ["/twitter-image"],
   },
   robots: {
     index: true,

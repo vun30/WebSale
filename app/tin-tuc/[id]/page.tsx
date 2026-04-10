@@ -205,4 +205,3 @@ export default async function Page({
     </section>
   );
 }
-
