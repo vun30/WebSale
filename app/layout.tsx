@@ -16,6 +16,7 @@ const quicksand = Quicksand({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.hyundaigialaiofficial.com.vn"),
+  applicationName: "Hyundai Gia Lai",
   title: {
     default: "Hyundai Gia Lai | Đại lý Hyundai chính hãng tại Gia Lai",
     template: "%s | Hyundai Gia Lai",
@@ -69,6 +70,43 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Hyundai Gia Lai",
+    url: "https://www.hyundaigialaiofficial.com.vn",
+    logo: "https://www.hyundaigialaiofficial.com.vn/logo/huyndai_logo.png",
+  };
+
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Hyundai Gia Lai",
+    alternateName: "Hyundai Gia Lai Official",
+    url: "https://www.hyundaigialaiofficial.com.vn",
+    publisher: {
+      "@type": "Organization",
+      name: "Hyundai Gia Lai",
+    },
+  };
+
+  const autoDealerSchema = {
+    "@context": "https://schema.org",
+    "@type": "AutoDealer",
+    name: "Hyundai Gia Lai",
+    url: "https://www.hyundaigialaiofficial.com.vn",
+    image: "https://www.hyundaigialaiofficial.com.vn/logo/huyndai_logo.png",
+    telephone: "+84-981-543-342",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "278 Lê Duẩn, Phường An Phú",
+      addressLocality: "Pleiku",
+      addressRegion: "Gia Lai",
+      addressCountry: "VN",
+    },
+    sameAs: [],
+  };
+
   return (
     <html lang="vi">
       <head>
@@ -88,23 +126,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "AutoDealer",
-              name: "Hyundai Gia Lai",
-              url: "https://www.hyundaigialaiofficial.com.vn",
-              image:
-                "https://www.hyundaigialaiofficial.com.vn/logo/huyndai_logo.png",
-              telephone: "+84-981-543-342",
-              address: {
-                "@type": "PostalAddress",
-                streetAddress: "278 Lê Duẩn, Phường An Phú",
-                addressLocality: "Pleiku",
-                addressRegion: "Gia Lai",
-                addressCountry: "VN",
-              },
-              sameAs: [],
-            }),
+            __html: JSON.stringify([
+              organizationSchema,
+              websiteSchema,
+              autoDealerSchema,
+            ]),
           }}
         />
         {/* Google Tag Manager (noscript) */}
