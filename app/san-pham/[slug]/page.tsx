@@ -18,6 +18,7 @@ const productBannerMap: Record<string, string> = {
   stargazer: "/product-banner/star-hero.jpg",
   tucson: "/product-banner/tucson-hero.jpg",
   venue: "/product-banner/venue-hero.jpg",
+  ioniq5: "/product-banner/ioniq.jpg",
 };
 
 const sectionMeta: Record<string, { label: string }> = {
@@ -205,11 +206,11 @@ export async function generateMetadata({
   const detailData = getDetailData(slug);
   const name = detailData?.product?.name ?? slug;
   const description = `Chi tiết mẫu xe ${name} tại Hyundai Gia Lai`;
-  const image =
-    productBannerMap[slug] ??
+  const highlightImg =
     detailData?.sections.find((section) => section.key === "highlights")
-      ?.images[0] ??
-    detailData?.sections[0]?.images[0];
+      ?.images[0] ?? detailData?.sections[0]?.images[0];
+  const image =
+    productBannerMap[slug] ?? highlightImg?.src;
 
   return {
     title: name,
@@ -250,7 +251,7 @@ export default async function CarDetailPage({
   const heroImage =
     sections.find((section) => section.key === "highlights")?.images[0] ??
     sections[0]?.images[0];
-  const bannerImage = productBannerMap[slug] ?? heroImage;
+  const bannerImage = productBannerMap[slug] ?? heroImage?.src;
   const visibleTabs = sections.map((section) => ({
     key: section.key,
     label: sectionMeta[section.key]?.label ?? section.label,

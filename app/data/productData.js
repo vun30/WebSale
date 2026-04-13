@@ -1109,10 +1109,10 @@ export const products = {
 
     // ===== NỔI BẬT =====
     highlight: {
-      hero: "/images/cardetail/highlights/star/star-highlight1.jpg",
+      hero: "/images/cardetail/highlights/star/star-highlight1.png",
       // title: "New IONIQ 5",
       // subtitle: "Bứt phá mọi giới hạn.",
-      videoId: "D3l-ggcW3NI",
+      videoId: "veWQmJAlC8o",
       intro: {
         eyebrow: "Hyundai",
         title: "Stargazer X",
@@ -1134,41 +1134,29 @@ export const products = {
       },
       lead: {
         // title: "Thiết kế mới đậm chất SUV",
-        image: "/images/cardetail/ngoaithat/star/star-ngoaithat1.jpg",
+        image: "/images/cardetail/ngoaithat/star/star-ngoaithat1.png",
         caption: "Ngoại Thất Hyundai Stargazer X.",
       },
       grid4: [
         {
-          img: "/images/cardetail/ngoaithat/star/star-ngoaithat2.jpg",
+          img: "/images/cardetail/ngoaithat/star/star-ngoaithat2.png",
           caption: "Lưới tản nhiệt 3D mạ crôm",
         },
         {
-          img: "/images/cardetail/ngoaithat/star/star-ngoaithat3.jpg",
+          img: "/images/cardetail/ngoaithat/star/star-ngoaithat3.png",
           caption: "Đèn chiếu sáng dạng LED",
         },
         {
-          img: "/images/cardetail/ngoaithat/star/star-ngoaithat4.jpg",
+          img: "/images/cardetail/ngoaithat/star/star-ngoaithat4.png",
           caption: "Thiết kế thể thao mạnh mẽ",
         },
         {
-          img: "/images/cardetail/ngoaithat/star/star-ngoaithat5.jpg",
+          img: "/images/cardetail/ngoaithat/star/star-ngoaithat5.png",
           caption: "Vành hợp kim 17 inch thể thao",
         },
         {
-          img: "/images/cardetail/ngoaithat/star/star-ngoaithat6.jpg",
+          img: "/images/cardetail/ngoaithat/star/star-ngoaithat6.png",
           caption: "Xi nhan tích hợp trên gương chiếu hậu",
-        },
-        {
-          img: "/images/cardetail/ngoaithat/star/star-ngoaithat7.jpg",
-          caption: "Keyless Entry",
-        },
-        {
-          img: "/images/cardetail/ngoaithat/star/star-ngoaithat8.jpg",
-          caption: "Đèn phanh trên cao",
-        },
-        {
-          img: "/images/cardetail/ngoaithat/star/star-ngoaithat9.jpg",
-          caption: "Cụm đèn hậu LED hình chữ H",
         },
       ],
     },
@@ -1853,7 +1841,7 @@ export const products = {
       ],
     },
   },
-  
+
   elentra: {
     name: "Elantra",
     price: "Giá từ 599 triệu VNĐ",
@@ -2744,9 +2732,7 @@ export const products = {
   venue: {
     name: "Venue",
     price: "Giá từ 499.000.000 VNĐ",
-    variants: [
-      { name: "Venue 1.6 AT Đặc biệt", price: "539.000.000 VNĐ" },
-    ],
+    variants: [{ name: "Venue 1.6 AT Đặc biệt", price: "539.000.000 VNĐ" }],
     cover: "/images/slides/venue.png",
 
     // ===== NỔI BẬT =====
@@ -2795,13 +2781,11 @@ export const products = {
           img: "/images/cardetail/ngoaithat/venue/venue-ngoaithat6.jpg",
           caption: "Đèn hậu LED cá tính",
         },
-        
       ],
       midBlock: {
         title: "Kích thước nhỏ gọn, linh hoạt",
         body: "Chiếc xe sở hữu kích cỡ nhỏ gọn với kích thước chiều Dài x Rộng x Cao lần lượt 3.995 x 1.770 x 1.645 (mm). Khoảng sáng gầm xe đạt 195mm cùng chiều dài cơ sở 2.500 mm. Xe được trang bị bộ lazang 16 inch trên cả 2 phiên bản với thông số lốp 215/60R16. Venue cũng được trang bị thanh giá nóc, giúp tăng thêm vẻ mạnh mẽ đồng thời dễ dàng phát huy công năng khi cần chở đồ có kích thước lớn mà khoang hành lí không chứa đủ.",
         image: "/images/cardetail/ngoaithat/venue/venue-ngoaithat2.jpg",
-        
       },
     },
 
@@ -2820,11 +2804,13 @@ export const products = {
       grid4: [
         {
           img: "/images/cardetail/noithat/venue/venue-noithat2.jpg",
-          caption: "Hyundai Venue đươc trang bị nút bấm khởi động Start/Stop Engine cùng chìa khóa thông minh tích hợp khởi động từ xa",
+          caption:
+            "Hyundai Venue đươc trang bị nút bấm khởi động Start/Stop Engine cùng chìa khóa thông minh tích hợp khởi động từ xa",
         },
         {
           img: "/images/cardetail/noithat/venue/venue-noithat3.jpg",
-          caption: "Đồng hồ thông tin của Venue được thiết kế dạng LED Digital giúp hiển thị các thông số một cách trực quan, đồng thời có thể thay đổi giao diện theo chế độ lái. Xe được trang bị điều khiển hành trình, giới hạn tốc độ MSLA, cảm biến áp suất lốp TPMS, đèn chiếu sáng tự động… đem đến một không gian tiện nghi bậc nhất trong phân khúc.",
+          caption:
+            "Đồng hồ thông tin của Venue được thiết kế dạng LED Digital giúp hiển thị các thông số một cách trực quan, đồng thời có thể thay đổi giao diện theo chế độ lái. Xe được trang bị điều khiển hành trình, giới hạn tốc độ MSLA, cảm biến áp suất lốp TPMS, đèn chiếu sáng tự động… đem đến một không gian tiện nghi bậc nhất trong phân khúc.",
         },
         {
           img: "/images/cardetail/noithat/venue/venue-noithat4.jpg",
@@ -2874,13 +2860,15 @@ export const products = {
     safety: {
       header: {
         eyebrow: "An toàn",
-        title: "Hyundai Venue 2025 – An toàn tuyệt đối với hệ thống khung gầm chứa vật liệu chịu lực cao",
+        title:
+          "Hyundai Venue 2025 – An toàn tuyệt đối với hệ thống khung gầm chứa vật liệu chịu lực cao",
         body: "Với việc tăng cường độ cứng vững cho khung xe, Hyundai Venue mang đến sự an toàn vượt trội cho khách hàng. Venue được trang bị hệ thống khung xe với vật liệu chịu lực cao, được bổ sung thêm thành phần thép cường lực AHSS tới 65%, giúp hấp thụ lực tác động trong tình huống va chạm, đảm bảo an toàn cho toàn bộ hành khách ngồi trong xe. Hệ thống khung gầm của Venue được tăng cường khả năng xử lý N.V.H (Noise – Vibration – Harshness) ấn tượng khi giảm độ ồn, rung bằng các giải pháp thêm các ngăn tiêu âm trên cánh cửa, tăng độ cứng ở các cụm panel và sàn xe. Hệ thống lái cũng được cải tiến, giúp gia tăng độ chính xác cũng như khả năng phản hồi tốt hơn, đem đến cảm giác thú vị mỗi khi cầm lái.",
       },
       lead: {
         title: "Hệ thống an toàn chủ động SmartSense",
         image: "/images/cardetail/antoan/venue/venue-antoan5.jpg", // ảnh xe đuôi bạn gửi
-        caption: "Hyundai Venue được trang bị đầy đủ các tính năng an toàn cao cấp: Hệ thống chống bó cứng phanh ABS, Hệ thống phân bổ lực phanh điện tử EBD, Hệ thống hỗ trợ lực phanh BA, Hệ thống cân bằng điện tử ESC, Hệ thống khởi hành ngang dốc HAC,Hệ thống kiểm soát thân xe VSM, Hệ thống an toàn 6 túi khí, Hệ thống camera và cảm biến lùi, Hệ thống chống trộm Immobilizer",
+        caption:
+          "Hyundai Venue được trang bị đầy đủ các tính năng an toàn cao cấp: Hệ thống chống bó cứng phanh ABS, Hệ thống phân bổ lực phanh điện tử EBD, Hệ thống hỗ trợ lực phanh BA, Hệ thống cân bằng điện tử ESC, Hệ thống khởi hành ngang dốc HAC,Hệ thống kiểm soát thân xe VSM, Hệ thống an toàn 6 túi khí, Hệ thống camera và cảm biến lùi, Hệ thống chống trộm Immobilizer",
       },
       grid4: [
         {
