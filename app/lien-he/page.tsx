@@ -20,9 +20,47 @@ export default function Page() {
   const phoneDisplay = "0981 543 342";
   const phoneRaw = "0981543342";
   const mapUrl = "https://maps.google.com/?q=278+Le+Duan,+An+Phu,+Gia+Lai";
+  const contactPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name: "Liên hệ Hyundai Gia Lai",
+    url: "https://www.hyundaigialaiofficial.com.vn/lien-he",
+    mainEntity: {
+      "@type": "AutoDealer",
+      name: "Hyundai Gia Lai",
+      telephone: "+84-981-543-342",
+      email: "hyundaigialaiofficial@gmail.com",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "278 Lê Duẩn, Phường An Phú",
+        addressLocality: "Pleiku",
+        addressRegion: "Gia Lai",
+        postalCode: "600000",
+        addressCountry: "VN",
+      },
+      openingHoursSpecification: {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday",
+        ],
+        opens: "08:00",
+        closes: "18:00",
+      },
+    },
+  };
 
   return (
     <section className="w-full bg-zinc-100 pb-12">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactPageSchema) }}
+      />
       <div className="relative isolate min-h-[540px] overflow-hidden md:min-h-[560px]">
         <div
           className="absolute inset-0 bg-cover bg-center"
@@ -54,7 +92,9 @@ export default function Page() {
             </h1>
 
             <p className="mt-4 text-base leading-relaxed text-white/90">
-              Showroom Hyundai tại Gia Lai - tư vấn, báo giá, lái thử.
+              Trang liên hệ chính thức của đại lý Hyundai Gia Lai. Liên hệ để
+              nhận báo giá lăn bánh, đăng ký lái thử, tư vấn trả góp và hỗ trợ
+              bảo dưỡng xe Hyundai.
               <br />
               278 Lê Duẩn, Phường An Phú, Gia Lai.
             </p>

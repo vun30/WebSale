@@ -5,6 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
+      disallow: ["/favicon.ico", "/*?tab="],
     },
     sitemap: "https://www.hyundaigialaiofficial.com.vn/sitemap.xml",
   };

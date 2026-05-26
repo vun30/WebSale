@@ -88,7 +88,8 @@ export default function TestDriveClient() {
             Đăng Ký Lái Thử Xe
           </h1>
           <p className="mt-2 text-center text-sm text-zinc-600 sm:text-base">
-            Để lại thông tin, tư vấn viên sẽ liên hệ trong 5–10 phút.
+            Đặt lịch lái thử xe Hyundai tại showroom 278 Lê Duẩn, Pleiku (Gia
+            Lai). Để lại thông tin, tư vấn viên sẽ liên hệ trong 5–10 phút.
           </p>
 
           <form onSubmit={handleSubmit} className="mt-6 space-y-4">

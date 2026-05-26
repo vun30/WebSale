@@ -208,13 +208,16 @@ export default function Footer() {
               aria-label="Footer links"
               className="flex flex-wrap gap-x-6 gap-y-2"
             >
-              <a href="#" className="uppercase tracking-wide hover:text-white">
+              <a href="/" className="uppercase tracking-wide hover:text-white">
                 Trang chủ
               </a>
               <a href="#" className="uppercase tracking-wide hover:text-white">
                 Chính sách bảo mật
               </a>
-              <a href="#" className="uppercase tracking-wide hover:text-white">
+              <a
+                href="/lien-he"
+                className="uppercase tracking-wide hover:text-white"
+              >
                 Liên hệ
               </a>
             </nav>
