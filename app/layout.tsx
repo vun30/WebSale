@@ -54,6 +54,9 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  verification: {
+    google: "l5wEfLjZt_8Hftw87vrE6xjMdeGz7Cw-rI8U5ziOUz0",
+  },
 };
 
 const navItems = [
