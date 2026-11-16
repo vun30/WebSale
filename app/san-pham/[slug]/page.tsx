@@ -199,14 +199,10 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({
   params,
-  searchParams,
 }: {
   params: Promise<{ slug: string }>;
-  searchParams: Promise<Record<string, string | string[] | undefined>>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const sp = await searchParams;
-  const tabParam = Array.isArray(sp.tab) ? sp.tab[0] : sp.tab;
   const detailData = getDetailData(slug);
   const name = detailData?.product?.name ?? slug;
   const description = `Chi tiết mẫu xe ${name} tại Hyundai Gia Lai`;
@@ -220,11 +216,6 @@ export async function generateMetadata({
   return {
     title: name,
     description,
-    ...(tabParam
-      ? {
-          robots: { index: false, follow: true },
-        }
-      : {}),
     alternates: {
       canonical: canonicalPath,
     },
