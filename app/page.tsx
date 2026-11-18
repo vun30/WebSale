@@ -8,18 +8,37 @@ import LocationSection from "./components/LocationSection";
 import HomeNewsSection from "./components/HomeNewsSection";
 import HomeServiceSection from "./components/HomeServiceSection";
 
+const homeUrl = "https://www.hyundaigialaiofficial.com.vn/";
+const siteName = "Hyundai Gia Lai";
+const homeTitle = `${siteName} | Đại lý Hyundai Chính Hãng`;
+
 export const metadata: Metadata = {
-  title: "Trang chủ",
+  title: homeTitle,
   description:
-    "Hyundai Gia Lai - cập nhật giá xe Hyundai mới nhất, chương trình ưu đãi, đăng ký lái thử và dịch vụ hậu mãi chính hãng.",
+    "Hyundai Gia Lai – Đại lý xe Hyundai, cập nhật bảng giá, giá lăn bánh, chương trình ưu đãi và hỗ trợ mua xe trả góp.",
   alternates: {
-    canonical: "/",
+    canonical: homeUrl,
   },
   openGraph: {
-    title: "Hyundai Gia Lai | Đại lý Hyundai chính hãng tại Gia Lai",
+    type: "website",
+    locale: "vi_VN",
+    siteName,
+    title: homeTitle,
     description:
       "Khám phá các dòng xe Hyundai, ưu đãi mới nhất và đăng ký lái thử tại Hyundai Gia Lai.",
-    url: "/",
+    url: homeUrl,
+  },
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: siteName,
+  alternateName: "Hyundai Gia Lai Chính Hãng",
+  url: homeUrl,
+  publisher: {
+    "@type": "Organization",
+    name: siteName,
   },
 };
 
@@ -131,6 +150,13 @@ export default async function Home() {
 
   return (
     <section className="pb-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(websiteSchema).replace(/</g, "\\u003c"),
+        }}
+      />
+      <h1 className="sr-only">{siteName}</h1>
       <HeroSlider images={images} />
       <PromoBar />
       <ProductGrid products={products} />

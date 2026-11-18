@@ -81,18 +81,6 @@ export default function RootLayout({
     logo: "https://www.hyundaigialaiofficial.com.vn/logo/huyndai_logo.png",
   };
 
-  const websiteSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: "Hyundai Gia Lai",
-    alternateName: "Hyundai Gia Lai Official",
-    url: "https://www.hyundaigialaiofficial.com.vn",
-    publisher: {
-      "@type": "Organization",
-      name: "Hyundai Gia Lai",
-    },
-  };
-
   const autoDealerSchema = {
     "@context": "https://schema.org",
     "@type": "AutoDealer",
@@ -129,11 +117,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify([
-              organizationSchema,
-              websiteSchema,
-              autoDealerSchema,
-            ]),
+            __html: JSON.stringify([organizationSchema, autoDealerSchema]),
           }}
         />
         {/* Google Tag Manager (noscript) */}
