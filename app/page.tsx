@@ -28,6 +28,12 @@ export const metadata: Metadata = {
       "Khám phá các dòng xe Hyundai, ưu đãi mới nhất và đăng ký lái thử tại Hyundai Gia Lai.",
     url: homeUrl,
   },
+  twitter: {
+    card: "summary_large_image",
+    title: homeTitle,
+    description:
+      "Hyundai Gia Lai – Đại lý xe Hyundai, cập nhật bảng giá, giá lăn bánh, chương trình ưu đãi và hỗ trợ mua xe trả góp.",
+  },
 };
 
 const websiteSchema = {

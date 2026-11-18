@@ -205,7 +205,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const detailData = getDetailData(slug);
   const name = detailData?.product?.name ?? slug;
-  const description = `Chi tiết mẫu xe ${name} tại Hyundai Gia Lai`;
+  const description = `Tìm hiểu Hyundai ${name} tại Hyundai Gia Lai: thiết kế, trang bị, thông số và các phiên bản. Liên hệ để được tư vấn và nhận báo giá.`;
   const highlightImg =
     detailData?.sections.find((section) => section.key === "highlights")
       ?.images[0] ?? detailData?.sections[0]?.images[0];
@@ -272,9 +272,10 @@ export default async function CarDetailPage({
     price?: string;
   }>;
   const specs = (detailData.product.specs ?? {}) as Record<string, string>;
-  const price =
-    variants.find((variant) => variant.price)?.price ??
-    detailData.product.price;
+  const listedPrice = variants.find((variant) => variant.price)?.price;
+  const price = listedPrice && /^\d{1,3}(?:\.\d{3})+ VNĐ$/.test(listedPrice)
+    ? listedPrice.replace(/[^\d]/g, "")
+    : undefined;
   const productJsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -289,8 +290,7 @@ export default async function CarDetailPage({
       ? {
           "@type": "Offer",
           priceCurrency: "VND",
-          price: String(price).replace(/[^\d]/g, "") || undefined,
-          availability: "https://schema.org/InStock",
+          price,
           url: `${BASE_URL}/san-pham/${slug}`,
         }
       : undefined,
