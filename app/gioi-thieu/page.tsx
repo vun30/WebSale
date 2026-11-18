@@ -43,12 +43,12 @@ export default function Page() {
             </p>
 
             <div className="mt-6 flex flex-wrap gap-3">
-              <a
-                href="#"
+              <Link
+                href="/dang-ky-lai-thu"
                 className="inline-flex items-center justify-center rounded-xl bg-blue-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-950"
               >
                 Đăng ký lái thử
-              </a>
+              </Link>
               <a
                 href="tel:0981543342"
                 className="inline-flex items-center justify-center rounded-xl border border-zinc-200 bg-white px-5 py-3 text-sm font-semibold text-zinc-700 transition hover:bg-zinc-50"

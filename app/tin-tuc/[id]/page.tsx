@@ -67,6 +67,11 @@ export async function generateMetadata({
       url: `/tin-tuc/${item.id}`,
       publishedTime: toIsoDate(item.date),
     },
+    twitter: {
+      card: "summary_large_image",
+      title: item.title,
+      description: item.excerpt ?? "Bài viết tin tức Hyundai.",
+    },
   };
 }
 

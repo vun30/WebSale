@@ -2,6 +2,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { FormEvent, useState } from "react";
 
 export default function Footer() {
@@ -178,7 +179,7 @@ export default function Footer() {
             </div>
             <div className="mt-4 flex items-center gap-3">
               <a
-                href="#"
+                href="mailto:hyundaigialaiofficial@gmail.com"
                 aria-label="Email"
                 className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20"
               >
@@ -208,12 +209,9 @@ export default function Footer() {
               aria-label="Footer links"
               className="flex flex-wrap gap-x-6 gap-y-2"
             >
-              <a href="/" className="uppercase tracking-wide hover:text-white">
+              <Link href="/" className="uppercase tracking-wide hover:text-white">
                 Trang chủ
-              </a>
-              <a href="#" className="uppercase tracking-wide hover:text-white">
-                Chính sách bảo mật
-              </a>
+              </Link>
               <a
                 href="/lien-he"
                 className="uppercase tracking-wide hover:text-white"
